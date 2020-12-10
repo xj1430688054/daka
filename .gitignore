@@ -1,0 +1,11 @@
+
+/target/
+/.apt_generated/
+/.apt_generated_tests/
+/.externalToolBuilders/
+/bookshare/
+/.externalToolBuilders/
+*.iml
+.project
+/.settings/
+/.idea/
