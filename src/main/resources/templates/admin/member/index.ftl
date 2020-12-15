@@ -122,6 +122,9 @@
                 title: "openid",
                 field: "openid"
             },{
+                title: "手机号",
+                field: "phone"
+            },{
                 title: "有效状态",
                 field: "validstatus",
                 formatter: function(value,row,index){
@@ -145,6 +148,7 @@
                 formatter: function (value, row, index) {
                     var operateHtml = '<@shiro.hasPermission name="system:member:add"><button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')"><i class="fa fa-edit"></i>&nbsp;修改</button> &nbsp;</@shiro.hasPermission>';
                     operateHtml = operateHtml + '<@shiro.hasPermission name="system:member:deleteBatch"><button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button></@shiro.hasPermission>';
+                    operateHtml = operateHtml + '<@shiro.hasPermission name="system:member:test"><button class="btn btn-danger btn-xs" type="button" onclick="test(\''+row.id+'\')"><i class="fa fa-arrows"></i>&nbsp;发起请求</button></@shiro.hasPermission>';
                     return operateHtml;
                 }
             }]
@@ -190,6 +194,20 @@
                     });
                 }
             });
+        });
+    }
+
+    function test(id){
+        layer.open({
+            type: 2,
+            title: '资源修改',
+            shadeClose: true,
+            shade: false,
+            area: ['893px', '600px'],
+            content: '${ctx!}/admin/member/test/' + id,
+            end: function(index){
+                $('#table_list').bootstrapTable("refresh");
+            }
         });
     }
 

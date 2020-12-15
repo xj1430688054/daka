@@ -55,6 +55,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-sm-3 control-label">手机号：</label>
+                                <div class="col-sm-8">
+                                    <input id="phone" name="phone" class="form-control" type="text" value="${member.phone}">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label">状态：</label>
                                 <div class="col-sm-8">
                                 	<select name="type" class="form-control">

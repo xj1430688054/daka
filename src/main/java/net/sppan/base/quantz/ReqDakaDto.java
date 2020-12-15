@@ -19,6 +19,7 @@ public class ReqDakaDto {
     private Integer horizontalAccuracy ;
     private Integer timeLong ;
 
+    /**构造方法  输入经度以及纬度 */
     public ReqDakaDto(Double longitude, Double latitude) {
         this.longitude = longitude;
         this.latitude = latitude;

@@ -1,10 +1,14 @@
 package net.sppan.base.controller.admin.system;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import net.sppan.base.common.JsonResult;
 import net.sppan.base.controller.BaseController;
+import net.sppan.base.dao.IMemberLogDao;
 import net.sppan.base.entity.Member;
+import net.sppan.base.entity.MemberLog;
 import net.sppan.base.quantz.ClockSave;
+import net.sppan.base.quantz.ResData;
 import net.sppan.base.service.IMemberService;
 import net.sppan.base.service.specification.SimpleSpecificationBuilder;
 import net.sppan.base.service.specification.SpecificationOperator.Operator;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.List;
 @Slf4j
 @Controller
@@ -27,33 +32,52 @@ public class MemberController extends BaseController {
 	@Autowired
 	private IMemberService memberService;
 
+	private IMemberLogDao iMemberLogDao;
+
 
 
 	@RequestMapping("/index")
 	public String index() {
 		return "admin/member/index";
 	}
-	@ResponseBody
-	@RequestMapping("/test")
-	public String test() {
-		List<Member> all = memberService.findAll();
-		StringBuffer str = new StringBuffer();
-		for (Member member : all) {
-			try {
-				String doPost = new ClockSave().doPost(member.getOpenid());
-				str.append(member.getName() + doPost + "sueecss");
-				str.append("\r\n");
-				log.info(member.getName() + doPost + "sueecss");
-			}catch (Exception e){
-				str.append(member.getName() + "faulit");
-				str.append("\r\n");
-				log.info(member.getName() + "faulit");
-			}
 
+//	@ResponseBody
+	public String test(@PathVariable Integer id,ModelMap map) {
+
+		ResData resData = new ResData();
+
+		//¥Úø®»’÷æ
+		MemberLog memberLog = new MemberLog();
+		Member member = memberService.find(id);
+		memberLog.setOpenid(member.getOpenid());
+		memberLog.setInputtime(new Date());
+		memberLog.setMid(member.getId());
+		memberLog.setName(member.getName());
+		memberLog.setDatatype("1");
+		StringBuffer str = new StringBuffer();
+		try {
+			String doPost = new ClockSave().doPost(member.getOpenid());
+			resData = JSON.parseObject(doPost, ResData.class);
+
+//			resData.setMsg(doPost);
+//			resData.setCode();
+			memberLog.setStatus("1");
+			str.append(member.getName() + doPost + "sueecss");
+			str.append("\r\n");
+			log.info(member.getName() + doPost + "sueecss");
+		}catch (Exception e){
+			resData.setCode("null");
+			resData.setMsg(e.getMessage());
+			memberLog.setStatus("0");
+			str.append(member.getName() + "faulit");
+			str.append("\r\n");
+			log.info(member.getName() + "faulit");
 		}
+		map.put("resdata", resData);
+
 
 //		System.out.println(doPost);
-		return str.toString();
+		return "admin/member/test";
 	}
 
 	@RequestMapping("/list")

@@ -46,6 +46,11 @@ public class Member extends BaseEntity {
 	private String validstatus;
 
 	/**
+	 * 手机号
+	 */
+	private String phone;
+
+	/**
 	 * 修改时间
 	 */
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")

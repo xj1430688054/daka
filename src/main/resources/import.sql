@@ -23,6 +23,7 @@ insert into tb_resource (id, create_time, description, icon, is_hide, level, nam
 insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (16, '2017-01-17 11:21:52', '成员编辑', null, 0, 3, '成员编辑', 1, 'system:member:edit', '/admin/member/edit*', 2, '2017-01-17 11:22:36', 15);
 insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (17, '2017-01-17 11:21:54', '成员添加', null, 0, 3, '成员添加', 2, 'system:member:add', '/admin/member/add', 2, '2017-01-17 11:22:39', 15);
 insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (18, '2017-01-17 11:21:54', '成员删除', null, 0, 3, '成员删除', 3, 'system:member:deleteBatch', '/admin/member/deleteBatch', 2, '2017-01-18 14:12:31', 15);
+insert into tb_resource (id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, type, update_time, parent_id) values (19, '2017-01-17 11:21:54', '成员测试', null, 0, 3, '成员测试', 3, 'system:member:test', '/admin/member/test', 2, '2017-01-18 14:12:31', 15);
 
 
 
@@ -44,6 +45,7 @@ insert into tb_role_resource (role_id, resource_id) values (1, 15);
 insert into tb_role_resource (role_id, resource_id) values (1, 16);
 insert into tb_role_resource (role_id, resource_id) values (1, 17);
 insert into tb_role_resource (role_id, resource_id) values (1, 18);
+insert into tb_role_resource (role_id, resource_id) values (1, 19);
 
 insert into tb_member (id, createtime, name, openid, updatetime, validstatus) values (1, '1020-12-10 00:00:00', 'xujian', 'oOhAh0em_aU1EN172xVz-Cp20L9g', '1020-12-10 00:00:00', '1');
 

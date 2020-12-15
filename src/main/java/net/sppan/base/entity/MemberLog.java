@@ -31,6 +31,11 @@ public class MemberLog extends BaseEntity {
 	private Integer id;
 
 	/**
+	 * 成员id
+	 */
+	private Integer mid;
+
+	/**
 	 * 账户名
 	 */
 	private String name;
@@ -40,10 +45,15 @@ public class MemberLog extends BaseEntity {
 	 */
 	private String openid;
 
-	/**
-	 * 用户密码
-	 */
+
 	private String status;
+
+
+	/**
+	 * 请求类型， 1 test
+	 *  2 定时
+	 */
+	private String datatype;
 
 	private String msg;
 
